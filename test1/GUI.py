@@ -9,19 +9,19 @@ ser = serial.Serial(commPort, baudrate="9600", timeout=1)
 
 #function that transmit values
 def turnOnLed():
-    ser.write(b'x')
+    ser.write(b'x\n')
 
 def turnOffLed():
-    ser.write(b'z')
+    ser.write(b'z\n')
 
 def changeBaseAngle(value):
-    ser.write(f"{value}\n".encode())
+    ser.write(f"0:{value}\n".encode())
 
 def changeXValue(value):
-    ser.write(f"{value}\n".encode())
+    ser.write(f"1:{value}\n".encode())
 
 def changeYValue(value):
-    ser.write(f"{value}\n".encode())
+    ser.write(f"2:{value}\n".encode())
 
 #build the gui
 root =  Tk()
