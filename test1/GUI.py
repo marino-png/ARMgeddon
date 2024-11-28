@@ -9,10 +9,10 @@ ser = serial.Serial(commPort, baudrate="9600", timeout=1)
 
 #function that transmit values
 def turnOnLed():
-    ser.write(b'x\n')
+    ser.write(b'4:1\n')
 
 def turnOffLed():
-    ser.write(b'z\n')
+    ser.write(b'4:0\n')
 
 def changeBaseAngle(value):
     ser.write(f"0:{value}\n".encode())

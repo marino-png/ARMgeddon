@@ -76,6 +76,14 @@ void selectMovment(int sliderID, int valueSlider){
   }
   else if(sliderID == 2){
     valueOfY = valueSlider;
+  } 
+  else if(sliderID == 4){
+    if (valueSlider == 1){
+      moveServoSmooth(4, 400);
+    }
+    if else(valueSlider == 0){
+      moveServoSmooth(4, 150);
+    }
   }
 }
 
@@ -100,8 +108,7 @@ void moveServoSmooth(int servoNum, int targetPos){
   }
 }
 
-void inverseKinematics(float x, float y)
-{
+void inverseKinematics(float x, float y){
   float d = sqrt(x * x + y * y); // Distance from base to end-effector
   if (d > (link1 + link2) || d < fabs(link1 - link2))
   {
