@@ -81,15 +81,17 @@ void selectMovment(int sliderID, int valueSlider){
     if (valueSlider == 1){
       moveServoSmooth(4, 400);
     }
-    if else(valueSlider == 0){
+    else if(valueSlider == 0){
       moveServoSmooth(4, 150);
     }
   }
 }
 
 // Function to smoothly move a servo
-void moveServoSmooth(int servoNum, int targetPos){
+void moveServoSmooth(int servoNum, int targetPosAngle){
   int currentPos = currentServoPos[servoNum];
+  //calculate the position from degree to the right number for the servos 
+  int targetPos = map(targetPosAngle, 0, 180, servoMin, servoMax);
   // Move the servo gradually towards the target position
   while (currentPos != targetPos)
   {
@@ -118,7 +120,7 @@ void inverseKinematics(float x, float y){
   
   float alfa = acos((link1*link1+link2*link2-d*d)/(2*link1*link2));
   float angle2 = PI - alfa; // Elbow angle
-  float angle1 = atan2(y, x) - atan2(link2 * sin(alfa), link1 + link2 * cos(alfa));       // Shoulder angle
+  float angle1 = atan2(y, x) - atan2(link2 * sin(alfa), d);       // Shoulder angle
   float angle3 = atan2(y, x) - angle1 - angle2;
 
   // Convert angles to degrees
