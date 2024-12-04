@@ -39,6 +39,7 @@ int currentServoPos[numServos] = {90, 90, 90, 90, 90}; // Initial positions
 
 void setup(){
   Serial.begin(9600);
+  Wire.begin();
   pwm.begin();
   pwm.setOscillatorFrequency(27000000);
   pwm.setPWMFreq(50);
@@ -52,8 +53,12 @@ void loop(){
     parseMessage(userInput);
 
     selectMovment(sliderID , valueSlider );
+    Serial.println(sliderID);
+     Serial.println(valueSlider);
 
     inverseKinematics(valueOfX, valueOfY);
+    Serial.println(valueOfX);
+     Serial.println(valueOfY);
   }
 }
 
@@ -79,19 +84,17 @@ void selectMovment(int sliderID, int valueSlider){
   } 
   else if(sliderID == 4){
     if (valueSlider == 1){
-      moveServoSmooth(4, 400);
+      moveServoSmooth(4, 180);
     }
     else if(valueSlider == 0){
-      moveServoSmooth(4, 150);
+      moveServoSmooth(4, 10);
     }
   }
 }
 
 // Function to smoothly move a servo
-void moveServoSmooth(int servoNum, int targetPosAngle){
+void moveServoSmooth(int servoNum, int targetPos){
   int currentPos = currentServoPos[servoNum];
-  //calculate the position from degree to the right number for the servos 
-  int targetPos = map(targetPosAngle, 0, 180, servoMin, servoMax);
   // Move the servo gradually towards the target position
   while (currentPos != targetPos)
   {

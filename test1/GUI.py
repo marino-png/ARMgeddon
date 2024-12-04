@@ -35,24 +35,25 @@ sliderBase = tk.Scale(
     to=180,            # Maximum value of slider
     orient="horizontal", # Orientation: horizontal or vertical
     length=200,        # Length of the slider
+    variable=tk.DoubleVar(value=90),
     command=changeBaseAngle # Callback function on value change
 )
 sliderX = tk.Scale(
     root,
     from_=0,           # Minimum value of slider
-    to=50,            # Maximum value of slider
+    to=10,            # Maximum value of slider
     orient="horizontal", # Orientation: horizontal or vertical
     length=200,        # Length of the slider
     command=changeXValue, # Callback function on value change
-    variable=tk.DoubleVar(value=25) #the slider is originated at the middle 
+    variable=tk.DoubleVar(value=5) #the slider is originated at the middle 
 )
 sliderY = tk.Scale(
     root,
     from_=0,           # Minimum value of slider
-    to=50,            # Maximum value of slider
+    to=10,            # Maximum value of slider
     orient="horizontal", # Orientation: horizontal or vertical
     length=200,        # Length of the slider
-    variable=tk.DoubleVar(value=25), #the slider is originated at the middle 
+    variable=tk.DoubleVar(value=5), #the slider is originated at the middle 
     command=changeYValue # Callback function on value change
 )
 
